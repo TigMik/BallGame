@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <title>Document</title>
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body id="body">
+
+    <div class="game">
+      <div class="game-wrapper">
+        <form action="/action_page.php">
+            <div class="labelInput">
+              <label for="fname">Player 1</label>
+              <input type="text" class="playerName" name="fname" value="sss" id="s" placeholder="Type your name, please...">
+              <div id="errorMessage1"></div>
+            </div> <br>
+            <div class="labelInput">
+              <label for="lname">Player 2</label> 
+              <input type="text" class="playerName" name="lname" value="ddd" id="a" placeholder="Type your name, please...">
+              <div id="errorMessage2"></div>
+            </div> <br>
+            <button type="button" id="btn">Start game</button>
+          </form>
+      </div>
+    </div> 
+
+   <div class="score">
+    <input disabled type="text" id="scoreContainer1" value=0 id=s"> 
+    <span></span> <br>
+    <input disabled type="text" id="scoreContainer2" value=0 id=s">
+    <span></span>
+   </div>
+
+    
+    <script src="scripts/ball.js"></script>
+    <script src="scripts/victim.js"></script>
+    <script src="scripts/startPlay.js"></script>
+    <!-- <script src="scripts/game.js"></script> -->
+
+</body>
+</html>
