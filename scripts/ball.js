@@ -50,6 +50,7 @@ class Ball {
         }
     }
 
+
     moveUp() {
         if (this.top > 0) {
             this.top -= 5;
@@ -79,7 +80,7 @@ class Ball {
         }
     }
 
-    getBall () {
+    getBall() {
         return this.player;
     }
 
@@ -104,17 +105,35 @@ class Ball {
             this.speed++;
             this.playerStyle.width = (parseInt(this.playerStyle.width) + this.addSize) + 'px';
             this.playerStyle.height = (parseInt(this.playerStyle.height) + this.addSize) + 'px';
-        } 
+        }
+
+        if (this.shouldEatBall()) {
+            this.enemy.playerStyle.display = 'none';
+
+            setTimeout(() => {
+                this.enemy.playerStyle.display = 'block';
+                this.enemy.playerStyle.top = Math.round(Math.random() * document.body.clientHeight - parseInt(this.enemy.playerStyle.height)) + 'px';
+                this.enemy.playerStyle.left = Math.round(Math.random() * document.body.clientWidth - parseInt(this.enemy.playerStyle.width)) + 'px';
+               
+            }, 1000);
+            console.log('I can eat');
+        }
     }
 
 
     updateScore() {
         this.score++;
         document.getElementById(this.id).value = this.score;
-        if (this.score === 100) {
+        if (this.score === 3) {
             this.score = 0;
             document.getElementById(this.id).innerHTML = this.score;
             alert(`${this.name} wins!`);
+            clearInterval(this.intervalId);
+            this.playerStyle.top = Math.round(Math.random() * document.body.clientHeight - parseInt(this.playerStyle.height)) + 'px';
+            this.playerStyle.left = Math.round(Math.random() * document.body.clientWidth - parseInt(this.playerStyle.width)) + 'px';
+            this.enemy.playerStyle.top = Math.round(Math.random() * document.body.clientHeight - parseInt(this.enemy.playerStyle.height)) + 'px';
+            this.enemy.playerStyle.left = Math.round(Math.random() * document.body.clientWidth - parseInt(this.enemy.playerStyle.width)) + 'px';
+            document.getElementById(this.id).innerHTML = 0;
         }
     }
 
@@ -135,15 +154,36 @@ class Ball {
             (el1.offsetLeft > el2.offsetRight))
     }
 
-    shouldEatBall(el) {
-        this.player.offsetBottom = this.player.offsetTop + this.player.offsetHeight;
-        this.player.offsetRight = this.player.offsetLeft + this.player.offsetWidth;
-        el.offsetBottom = el.offsetTop + el.offsetHeight;
-        el.offsetRight = el.offsetLeft + el.offsetWidth;
-    
-        return !((this.player.offsetBottom < el.offsetTop) ||
-            (this.player.offsetTop > el.offsetBottom) ||
-            (this.player.offsetRight < el.offsetLeft) ||
-            (this.player.offsetLeft > el.offsetRight))
+    shouldEatBall() {
+        const playersConnected = this.shouldEatVictim(this.player, this.enemy.player);
+        const icanEat = this.score > this.enemy.score;
+        return playersConnected && icanEat;
+    }
+
+    registnerEnemy(enemy) {
+        this.enemy = enemy;
     }
 }
+
+function log(str) {
+    console.log(str);
+}
+
+function sayInfo() {
+    console.log(`Javascript was created in 1995. It is the best programming language in the world.`);
+}
+
+
+function ProgrammingLanguage(name, creationDate, type, paradigm, typing, oop, log, sayInfo) {
+    this.name = name;
+    this.creationDate = creationDate;
+    this.type = type;
+    this.paradigm = paradigm;
+    this.typing = typing;
+    this.oop = oop;
+    this.log = log;
+    this.sayInfo = sayInfo;
+}
+
+
+const js = new ProgrammingLanguage('JavaScript', 1995, 'interpreted', 'multi-paradigm', 'dynamic', 'prototype-based', log, sayInfo);

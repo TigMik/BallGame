@@ -1,8 +1,5 @@
 class Victim {
     constructor(top, left) {
-
-        //victims
-
         this.top = top; 
         this.left = left;
         this.victim = document.createElement('div');

@@ -19,14 +19,13 @@ function startGame() {
             left: 'a',
             right: 'd'
         }, victim, 'assets/200w.webp', 'scoreContainer2', 10, 10);
+        newBall.registnerEnemy(newBall2);
+        newBall2.registnerEnemy(newBall);
 
         const namePlaces = document.getElementsByTagName('span');
         namePlaces[0].innerHTML = inputsForNames[0].value;
         namePlaces[1].innerHTML = inputsForNames[1].value;
 
-        // if (newBall.shouldEatBall(newBall2)) {
-        //     console.log(14);
-        // }
 
         document.getElementsByClassName('game')[0].remove();
 
