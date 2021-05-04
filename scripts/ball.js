@@ -174,16 +174,3 @@ function sayInfo() {
 }
 
 
-function ProgrammingLanguage(name, creationDate, type, paradigm, typing, oop, log, sayInfo) {
-    this.name = name;
-    this.creationDate = creationDate;
-    this.type = type;
-    this.paradigm = paradigm;
-    this.typing = typing;
-    this.oop = oop;
-    this.log = log;
-    this.sayInfo = sayInfo;
-}
-
-
-const js = new ProgrammingLanguage('JavaScript', 1995, 'interpreted', 'multi-paradigm', 'dynamic', 'prototype-based', log, sayInfo);
